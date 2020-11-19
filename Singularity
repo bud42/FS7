@@ -1,2 +1,2 @@
 Bootstrap: docker
-From: bud42/FS7
+From: bud42/fs7
