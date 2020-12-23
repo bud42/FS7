@@ -35,17 +35,14 @@ command: >-
   -B $INDIR:/INPUTS
   -B $OUTDIR:/OUTPUTS
   -B $HOME/freesurfer_license.txt:/usr/local/freesurfer/.license
-  --bind /data/mcr/centos7/FS6/license.txt:/opt/license.txt
   {container_path}
 attrs:
   walltime: 3-0
   memory: 16G
-  # assume xsitype: proc:genProcData
-  # assume ppn: 1
-# assume jobtemplate: job_template.txt
 
+# TODO:
+# assume xsitype: proc:genProcData
+# assume ppn: 1
+# assume jobtemplate: job_template.txt
 # default to varname=var1 or something random
-            # assume fcount=1, assume fmatch: *, assum ftype is FILE
-            #fmatch: '*'
-            #fcount: 1
-            #ftype: FILE
+# assume fcount=1, assume fmatch: *, assum ftype is FILE

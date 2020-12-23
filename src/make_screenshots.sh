@@ -16,14 +16,13 @@ freeview -cmd /opt/src/freeview_batch_sag.txt
 for i in [lr]h_*.png;do convert $i -fuzz 1% -trim +repage t${i};done
 
 # Trim top/bottom, annotate with slice numbers, add bottom border
-for i in *[0-9][0-9][0-9]*.png
-	do 
-		convert ${i} \
-		-gravity South -background white -splice 0x1 -fuzz 1% -trim +repage -chop 0x1 \
-		-gravity North -background white -splice 0x1 -fuzz 1% -trim +repage -chop 0x1 \
-		-background black -gravity center -resize 400x345 -extent 400x345 +repage \
-		-pointsize 18 -fill yellow -gravity southeast -annotate +5+5 ${i:3:3} \
-		-background white -splice 0x5 ${i}
+for i in *[0-9][0-9][0-9]*.png;do 
+	convert ${i} \
+-gravity South -background white -splice 0x1 -fuzz 1% -trim +repage -chop 0x1 \
+-gravity North -background white -splice 0x1 -fuzz 1% -trim +repage -chop 0x1 \
+-background black -gravity center -resize 400x345 -extent 400x345 +repage \
+-pointsize 18 -fill yellow -gravity southeast -annotate +5+5 ${i:3:3} \
+-background white -splice 0x5 ${i}
 done
 
 # Create first page
