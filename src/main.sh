@@ -1,7 +1,7 @@
 #!/bin/bash
 
 # Make directories
-mkdir /OUTPUT/subjects
+mkdir /OUTPUTS/subjects
 
 # Run FreeSurfer init
 recon-all \
