@@ -1,7 +1,7 @@
 FROM freesurfer/freesurfer:7.1.1
 
 # Install matlab mcr as needed for new thalamus, hippo/amyg, brainstem
-RUN yum -y install unzip wget xvfb
+RUN yum -y install unzip wget xvfb java-1.8.0-openjdk
 RUN mkdir /opt/mcr_install && \
     mkdir /opt/mcr && \
     wget -nv -P /opt/mcr_install \
