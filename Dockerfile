@@ -1,6 +1,6 @@
 FROM freesurfer/freesurfer:7.1.1
 
-# Install matlab mcr (required for new thalamus, hippo, amyg
+# Install matlab mcr as needed for new thalamus, hippo/amyg, brainstem
 RUN yum -y install unzip wget
 RUN mkdir /opt/mcr_install && \
     mkdir /opt/mcr && \
@@ -11,10 +11,10 @@ RUN mkdir /opt/mcr_install && \
     ln -s /usr/local/MATLAB/MATLAB_Compiler_Runtime/v84 /usr/local/freesurfer/MCRv84 && \
     rm -rf /opt/mcr_install
 
-# Install packages needed make screenshots
+# Install packages needed to make screenshots
 RUN yum install -y imagemagick ghostscript libgs-dev
 
-# Install packages for python to run recon-stats
+# Install python packages to run recon-stats
 RUN yum install -y python-setuptools python-dev pkg-config
 
 # Install recon-stats
@@ -30,4 +30,4 @@ ENV PATH=/opt/src:$PATH
 RUN mkdir /INPUTS /OUTPUTS
 
 # Configure default script to run
-ENTRYPOINT ["/bin/bash", "/opt/src/main.sh]
+ENTRYPOINT ["/bin/bash", "/opt/src/main.sh"]

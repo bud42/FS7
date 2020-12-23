@@ -35,9 +35,13 @@ segmentBS.sh SUBJECT /OUTPUTS/subjects
 cd /OUTPUTS/subjects/SUBJECT && \
 xvfb-run -e xvfb.err -f xvfb.auth --wait=5 -a \
 --server-args "-screen 0 1920x1080x24" \
-make_screenshots.sh SUBJECT && mv all.pdf /OUTPUTS/report.pdf
+make_screenshots.sh SUBJECT && \
+mv all.pdf /OUTPUTS/report.pdf
 
 # Create stats file
 export SUBJECTS_DIR=/OUTPUTS/subjects && \
-python -c "from recon_stats import Subject;\
-s = Subject('SUBJECT');s.get_measures();s.write('/OUTPUTS/stats.txt')"
+python -c "\
+from recon_stats import Subject;\
+s = Subject('SUBJECT');\
+s.get_measures();\
+s.write('/OUTPUTS/stats.txt')"
