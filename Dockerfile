@@ -26,7 +26,7 @@ WORKDIR /opt/src/recon-stats
 RUN python setup.py install
 
 # Make sure other stuff is in path
-RUN chmod +x /opt/src/make_screenshots.sh
+RUN chmod a+x /opt/src/make_screenshots.sh
 ENV PATH=/opt/src:$PATH
 
 # Make directories for I/O to bind
