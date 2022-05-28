@@ -3,13 +3,10 @@ procyamlversion: 3.0.0-dev.0
 containers:
   - name: FS7
     path: freesurfer_7.2.0.sif
-    source: docker://freesurfer/freesurfer:7.2.0
-  - name: POST
-    path: fs7_post_v1.sif
-    source: docker://bud42/fs7_post:v1
+    source: docker://freesurfer/freesurfer:v7.2.0
 requirements:
-  walltime: 0-8
-  memory: 24G
+  walltime: 2-0
+  memory: 16G
 inputs:
   xnat:
     scans:
@@ -17,16 +14,19 @@ inputs:
         types: T1
         nifti: T1.nii.gz
 outputs:
-  - dir: SUBJ
+  - pdf: report*.pdf
   - stats: stats.txt
-  - pdf: report.pdf
+  - path: subjects/SUBJECT
+    type: DIR
+    resource: DATA
 command:
   type: singularity_run
   container: FS7
-  extraopts: -B $HOME/freesurfer_license.txt:/opt/freesurfer/.license
-  args: /bin/bash -c "recon-all -sd /OUTPUTS -s SUBJ -i /INPUTS/T1.nii.gz -all"
-post:
-  type: singularity_run
-  container: POST
   extraopts: -B $HOME/freesurfer_license.txt:/usr/local/freesurfer/.license
-description: Run FreeSurfer recon-all with QA PDF and stats
+  args: >
+    /bin/bash -c
+    \"mkdir /OUTPUTS/subjects &&
+    recon-all -sd /OUTPUTS/subjects -s SUBJECT -i /INPUTS/T1.nii.gz &&
+    recon-all -sd /OUTPUTS/subjects -s SUBJECT -all\"
+description: |
+   FreeSurfer 7 recon-all

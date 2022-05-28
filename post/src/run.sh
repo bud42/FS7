@@ -1,8 +1,3 @@
-# Create QA PDFs
-cd /OUTPUTS/SUBJECT
-
-make_pdf.sh
-
 # Create stats file
 #export SUBJECTS_DIR=/OUTPUTS/subjects && \
 #python -c "\
@@ -10,3 +5,10 @@ make_pdf.sh
 #s = Subject('SUBJECT');\
 #s.get_measures();\
 #s.write('/OUTPUTS/stats.txt')"
+
+# Make stats file
+/opt/src/make_stats.sh
+
+# Create QA PDFs
+cd /OUTPUTS/SUBJECT
+make_pdf.sh

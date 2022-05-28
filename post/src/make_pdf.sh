@@ -1,8 +1,9 @@
 #!/bin/bash
 
 # Create the aseg without wm or cerebral gm
-mri_binarize --i mri/aseg.mgz --o mri/aseg.sub.mgz \
---replace 2  0 --replace 3 0 --replace 41 0 --replace 42 0
+#mri_binarize --i mri/aseg.mgz --o mri/aseg.sub.mgz \
+#--replace 2  0 --replace 3 0 --replace 41 0 --replace 42 0
+cp mri/aseg.mgz mri/aseg.sub.mgz
 
 # Create the screenshots
 freeview -cmd /opt/src/freeview_batch_3d.txt
