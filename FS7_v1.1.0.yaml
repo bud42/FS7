@@ -23,10 +23,10 @@ outputs:
 command:
   type: singularity_run
   container: FS7
-  extraopts: -B $HOME/freesurfer_license.txt:/opt/freesurfer/.license
+  extraopts: -B $HOME/freesurfer_license.txt:/usr/local/freesurfer/.license
   args: /bin/bash -c "recon-all -sd /OUTPUTS -s SUBJ -i /INPUTS/T1.nii.gz -all"
 post:
   type: singularity_run
   container: POST
-  extraopts: -B $HOME/freesurfer_license.txt:/usr/local/freesurfer/.license
+  extraopts: -B $HOME/freesurfer_license.txt:/opt/freesurfer/.license
 description: Run FreeSurfer recon-all with QA PDF and stats
