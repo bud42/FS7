@@ -8,7 +8,7 @@ containers:
     path: fs7_post_v1.sif
     source: docker://bud42/fs7_post:v1
 requirements:
-  walltime: 0-8
+  walltime: 1-0
   memory: 24G
 inputs:
   xnat:
