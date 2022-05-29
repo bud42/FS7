@@ -1,14 +1,10 @@
-# Create stats file
-#export SUBJECTS_DIR=/OUTPUTS/subjects && \
-#python -c "\
-#from recon_stats import Subject;\
-#s = Subject('SUBJECT');\
-#s.get_measures();\
-#s.write('/OUTPUTS/stats.txt')"
 
-# Make stats file
+# Make stats text files
+cd /OUTPUTS/SUBJ/stats
 /opt/src/make_stats.sh
 
-# Create QA PDFs
-cd /OUTPUTS/SUBJECT
-make_pdf.sh
+# Create QA PDF
+cd /OUTPUTS/SUBJ
+xvfb-run -a --server-args "-screen 0 1920x1080x24" /opt/src/make_pdf.sh
+
+echo "run DONE!"

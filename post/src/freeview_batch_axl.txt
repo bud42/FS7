@@ -37,7 +37,7 @@
 -slice 185 185 185 -ss axl185_a.png -noquit
 -slice 189 189 189 -ss axl189_a.png -noquit
 -slice 193 193 193 -ss axl193_a.png -noquit
--v mri/aseg.sub.mgz:visible=1:colormap=lut
+-v mri/aseg.mgz:visible=1:colormap=lut
 -f surf/lh.white:edgecolor=turquoise:edgethickness=1
 -f surf/lh.pial:edgecolor=red:edgethickness=1
 -f surf/rh.white:edgecolor=turquoise:edgethickness=1

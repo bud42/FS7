@@ -46,7 +46,7 @@
 -slice 197 197 197 -ss cor197_a.png -noquit
 -slice 201 201 201 -ss cor201_a.png -noquit
 -slice 205 205 205 -ss cor205_a.png -noquit
--v mri/aseg.sub.mgz:visible=1:colormap=lut
+-v mri/aseg.mgz:visible=1:colormap=lut
 -f surf/lh.white:edgecolor=turquoise:edgethickness=1
 -f surf/lh.pial:edgecolor=red:edgethickness=1
 -f surf/rh.white:edgecolor=turquoise:edgethickness=1
