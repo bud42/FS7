@@ -8,7 +8,7 @@ freeview -cmd /opt/src/freeview_batch_axl.txt > /dev/null 2>&1
 freeview -cmd /opt/src/freeview_batch_cor.txt > /dev/null 2>&1
 freeview -cmd /opt/src/freeview_batch_sag.txt > /dev/null 2>&1
 
-echo "Creating montages"
+echo "Annotating screenshots"
 
 # Trim 3d screenshots
 for i in [lr]h_*.png;do convert $i -fuzz 1% -trim +repage t${i};done
@@ -23,6 +23,8 @@ for i in *[0-9][0-9][0-9]*.png;do
 -background white -splice 0x5 ${i}
 done
 
+echo "Creating montages"
+
 # Create first page
 montage -mode concatenate \
 axl129_b.png cor129_b.png sag129_b.png \
@@ -34,10 +36,10 @@ trh_med_aparc.png trh_med_pial.png trh_med_thick.png \
 -trim -border 5 -bordercolor black -resize 300x first_page.png
 
 convert first_page.png \
--gravity NorthWest -background white -splice 0x70 -pointsize 24 \
+-gravity NorthWest -background white -splice 0x60 -pointsize 24 \
 -annotate +15+35 \
 'FreeSurfer 7 recon-all' \
--bordercolor white -border 30x30 \
+-bordercolor white -border 40x40 \
 first_page.png
 
 # Create montages

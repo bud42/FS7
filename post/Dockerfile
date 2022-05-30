@@ -1,13 +1,9 @@
 FROM python:3.8-slim-buster
 
-RUN apt-get update -qq && apt-get install -yq --no-install-recommends \
-    bc libglu1 libgomp1 libxmu6 libxt6 tar curl \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* \
-    && chmod 777 /opt && chmod a+s /opt
-
 # Install freeview from FreeSurfer v7.2.0
-RUN curl -sSL --retry 5 \
+RUN apt-get update -qq && apt-get install -yq \
+    tar curl && \
+    curl -sSL --retry 5 \
     https://surfer.nmr.mgh.harvard.edu/pub/dist/freesurfer/7.2.0/freesurfer-linux-ubuntu18_amd64-7.2.0.tar.gz \
     | tar xz -C /opt \
     freesurfer/bin/freeview \
@@ -16,10 +12,13 @@ RUN curl -sSL --retry 5 \
     freesurfer/lib/vtk
 
 # Install packages needed make screenshots
-RUN apt-get update -qq && apt-get install -yq \
-    imagemagick ghostscript libgs-dev xvfb xauth qt5-default \
-    && apt-get clean \
-    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+RUN apt-get update -qq && \
+    apt-get install -yq \
+    bc libglu1 libgomp1 libxmu6 libxt6 \
+    imagemagick ghostscript libgs-dev xvfb xauth qt5-default && \
+    apt-get clean && \
+    rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/* && \
+    chmod 777 /opt && chmod a+s /opt
 
 # Set up environment
 ENV FREESURFER_HOME /opt/freesurfer
@@ -35,14 +34,6 @@ RUN mkdir /INPUTS /OUTPUTS
 COPY src /opt/src/
 RUN chmod a+x /opt/src/*.sh
 ENV PATH=/opt/src:$PATH
-
-# Install python packages to run recon-stats
-#RUN yum install -y python-setuptools
-
-# Install recon-stats for FS stats
-#COPY src /opt/src/
-#WORKDIR /opt/src/recon-stats
-#RUN python setup.py install
 
 # Configure default script to run
 ENTRYPOINT ["/bin/bash", "/opt/src/run.sh"]

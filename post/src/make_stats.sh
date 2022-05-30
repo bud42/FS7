@@ -27,11 +27,3 @@ grep -i superiorfront lh.aparc.stats|tr -s ' '|cut -d' ' -f 5|xargs>>stats.txt
 
 echo -n fs7_supflobe_rh=>>stats.txt
 grep -i superiorfront rh.aparc.stats|tr -s ' '|cut -d' ' -f 5|xargs>>stats.txt
-
-# Create stats file
-#export SUBJECTS_DIR=/OUTPUTS/subjects && \
-#python -c "\
-#from recon_stats import Subject;\
-#s = Subject('SUBJECT');\
-#s.get_measures();\
-#s.write('/OUTPUTS/stats.txt')"
